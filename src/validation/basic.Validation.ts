@@ -47,74 +47,20 @@ class CommanValidationFilter {
 export const userValidation = (req, res, next) => {
     const userSchema = Joi.object({
         username: Joi.string().required(),
-        Email: new CommanValidationFilter().emails(),
-        isActive: Joi.string().valid('0', '1').required(),
-        password: Joi.string().min(6).required().messages({
-            'string.length': 'Please provide 6 characters password',
-        }),
-        IsAdmin: Joi.number().required(),
-    });
-    validateReq(req, next, userSchema);
-};
-
-export const userUpdateValidation = (req, res, next) => {
-    const userSchema = Joi.object({
-        username: Joi.string().required(),
-        Email: new CommanValidationFilter().emails(),
-        isActive: Joi.string().valid('0', '1').required(),
-        password: Joi.string().min(6).required().messages({
-            'string.length': 'Please provide 6 characters password',
-        }),
-        IsAdmin: Joi.string().valid('0', '1', '2').required(),
-        DNumber: Joi.string().required(),
-        CellPhone: Joi.string().required(),
-        isTime: Joi.string().required(),
+        firstname: Joi.string().required(),
+        lastname: Joi.string().required(),
+        phone: new CommanValidationFilter().phone(),
+        email: Joi.string().email().required(),
+        password: new CommanValidationFilter().password(),
+        role: Joi.string().valid('admin', 'user').required(),
     });
     validateReq(req, next, userSchema);
 };
 
 export const loginValidation = (req, res, next) => {
     const loginSchema = Joi.object({
-        username: Joi.string().required(),
-        password: Joi.string().required(),
+        email: Joi.string().email().required(),
+        password: new CommanValidationFilter().password(),
     });
     validateReq(req, next, loginSchema);
-};
-
-export const facilitiesValidation = (req, res, next) => {
-    const facilitySchema = Joi.object({
-        FacilityName: Joi.string().required(),
-        PermittedName: Joi.string().required(),
-        MeterNumber: Joi.string().required(),
-        Line: Joi.string().required(),
-        zOrder: Joi.number().required(),
-        IsActive: Joi.string().required(),
-        ShowBrine: Joi.string().required(),
-    });
-    validateReq(req, next, facilitySchema);
-};
-
-export const facilityLogValidation = (req, res, next) => {
-    const facilitySchema = Joi.object({
-        WaterMeter1: Joi.string().required(),
-        Disposal1: Joi.string().required(),
-        Disposal2: Joi.string().required(),
-        Annulas1: Joi.string().required(),
-        Annulas2: Joi.string().required(),
-        LP: Joi.number().required(),
-        Hours: Joi.string().required(),
-        SalesDTE: Joi.string().required(),
-        DateTime: Joi.string().required(),
-    });
-    validateReq(req, next, facilitySchema);
-};
-
-export const messagesValidation = (req, res, next) => {
-    const messagesSchema = Joi.object({
-        GroupID: Joi.number().required(),
-        Title: Joi.string().required(),
-        MessageContent: Joi.string().required(),
-        isActive: Joi.number().required(),
-    });
-    validateReq(req, next, messagesSchema);
 };
