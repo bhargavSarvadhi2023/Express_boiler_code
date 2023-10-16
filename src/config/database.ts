@@ -26,6 +26,7 @@ export const sequelize = new Sequelize(
     {
         host: dbConfig.DB_HOST,
         dialect: dbConfig.DB_DIALECT as Dialect,
+        port: Number(process.env.DB_PORT),
         logging: false,
     },
 );

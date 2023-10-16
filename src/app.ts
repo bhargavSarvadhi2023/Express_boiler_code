@@ -24,7 +24,8 @@ class AppServer {
             }),
         );
         app.use(passport.initialize());
-        app.use('/api', routes);
+        // app.use(passport.session());
+        app.use('/api/v1', routes);
         app.use(ErrorHandler);
         app.listen(port, () => {
             logger.info(`🚀 Server is listening on Port:- ${port}`);

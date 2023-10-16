@@ -1,5 +1,5 @@
 export enum END_POINTS {
-    AUTH = '/login',
+    AUTH = '/auth',
     ALL = '*',
     USER = '/',
     ADMIN = '/admin',

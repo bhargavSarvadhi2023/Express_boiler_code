@@ -11,6 +11,7 @@ class AuthController {
             const {
                 body: { username, password },
             } = req;
+
             const result = await db.userModel.findOne({ where: { username } });
             if (result && password == result.password) {
                 if (result.isActive === 0) {
