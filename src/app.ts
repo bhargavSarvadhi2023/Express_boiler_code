@@ -8,6 +8,7 @@ import './config/passport.jwt';
 import routes from './routes/index';
 import passport from 'passport';
 import cors from 'cors';
+import session from 'express-session';
 
 const port = process.env.PORT_SERVER || 8000;
 
@@ -23,8 +24,15 @@ class AppServer {
                 credentials: true,
             }),
         );
+        app.use(
+            session({
+                secret: process.env.SESSION_SECERET,
+                resave: false,
+                saveUninitialized: true,
+            }),
+        );
         app.use(passport.initialize());
-        // app.use(passport.session());
+        app.use(passport.session());
         app.use('/api/v1', routes);
         app.use(ErrorHandler);
         app.listen(port, () => {

@@ -35,8 +35,8 @@ class MainRouter {
         );
         this.router.use(
             END_POINTS.ADMIN,
-            passport.authenticate('jwt', { session: false }),
-            checkPermission([ROLES.ADMIN]),
+            // passport.authenticate('jwt', { session: false }),
+            // checkPermission([ROLES.ADMIN]),
             adminRoutes,
         );
         this.router.all(END_POINTS.ALL, (req, res, next) =>

@@ -7,4 +7,5 @@ export enum END_POINTS {
     DELETE_USER = '/delete-user/:id',
     EDIT_USER = '/edit-user/:id',
     CRAETE_USER = '/create-user',
+    LOGIN = '/login',
 }

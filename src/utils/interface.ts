@@ -1,19 +1,21 @@
 import { Model } from 'sequelize';
 
 interface User extends Model {
-    UserID: number;
-    username: string;
-    CellPhone: string;
-    DNumber: string;
-    Email: string;
-    IsAdmin: number;
-    isActive: number;
+    id: string;
+    userName: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
     password: string;
-    FacilityID: number;
-    isDeleted: number;
-    ChatRead: number;
-    isTime: number;
+    role: 'admin' | 'user';
     authenticate(password: string): boolean | string;
 }
+interface Otp extends Model {
+    id: string;
+    otp: number;
+    expiresIn: number;
+    userId: string;
+}
 
-export { User };
+export { User, Otp };

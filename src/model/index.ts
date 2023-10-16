@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
 import { sequelize } from '../config/database';
-import { userModel } from '../model/userModel';
+import { userModel } from './user.model';
 
 export const db = {
     Sequelize,

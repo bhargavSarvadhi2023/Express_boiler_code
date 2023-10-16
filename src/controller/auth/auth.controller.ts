@@ -9,26 +9,17 @@ class AuthController {
     async login(req, res, next) {
         try {
             const {
-                body: { username, password },
+                body: { email, password },
             } = req;
-
-            const result = await db.userModel.findOne({ where: { username } });
-            if (result && password == result.password) {
-                if (result.isActive === 0) {
-                    throw new AppError(
-                        RES_TYPES.ACTIVE_YOUR_ACCOUNT,
-                        ERRORTYPES.FORBIDDEN,
-                    );
-                }
+            const result = await db.userModel.findOne({ where: { email } });
+            if (result && result.authenticate(password)) {
                 const payload = {
-                    id: result.UserID,
+                    id: result.id,
+                    Email: result.email,
                 };
                 const token = await TokenController.createToken(payload, next);
                 return res.status(200).json({
                     success: true,
-                    statusCode: 200,
-                    role: result.IsAdmin,
-                    user: result.username,
                     data: token,
                     message: RES_TYPES.LOGIN,
                 });

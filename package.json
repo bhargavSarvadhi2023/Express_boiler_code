@@ -43,6 +43,7 @@
     },
     "devDependencies": {
         "@types/cors": "^2.8.13",
+        "@types/express-session": "^1.17.8",
         "@types/passport-google-oauth20": "^2.0.12"
     }
 }
